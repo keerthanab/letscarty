@@ -21,3 +21,33 @@
 
 */
 
+module.exports = function (mongoose, compound) {
+    // mongoose stuff
+    var schema = mongoose.Schema({ provider: String,
+    id: String,
+    username: String,
+    displayName: String,
+    emails: [{value: String}],
+    _raw: [mongoose.Schema.Types.Mixed],
+    _json: {id: String,
+    		services: [mongoose.Schema.Types.Mixed],
+    		url: String,
+    		description: String,
+    		thumbnail_url: String,
+    		location: String,
+    		name: String,
+    		handle: String,
+    		email: String,
+    		work: String,
+    		gravatar: String
+    		}
+    	});
+    
+    var User = mongoose.model('User', schema);
+
+    // expose model name for view helpers (resource-based helpers like formFor)
+    User.modelName = 'User';
+
+    // register model in compound.models registry
+    compound.models.User = User;
+};

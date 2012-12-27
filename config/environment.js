@@ -4,7 +4,9 @@ module.exports = function (compound) {
     var app = compound.app;
     var configKeys = require('../config/config_keys.keys');
 
-
+compound.on('post-init', function () {
+        require('./mongoose').init(compound);
+    });
 
 // ***********************SINGLY SETUP ***************************************************************
 var passport = require('passport');

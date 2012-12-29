@@ -15,6 +15,7 @@
   , "express-singly": "*"
   , "express-partials": "*"
   , "mongoose": "latest"
+  , "aws-sdk": "latest"
   },
   "devDependencies":
   { "nodeunit":         "*"

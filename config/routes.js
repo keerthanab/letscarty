@@ -8,7 +8,9 @@ exports.routes = function (map) {
 
     map.get('/home', 'home#homePage');
 
+    map.get('/uploadPic', 'home#uploadPic');
 
+    map.get('/downPic', 'home#downloadPic');
  
 
     // Generic routes. Add all your routes below this line

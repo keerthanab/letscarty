@@ -1,10 +1,30 @@
  <div class="container-fluid">  
       <div class="row-fluid">  
+       
         <div class="span3">  
           <div class="well sidebar-nav">  
             <ul class="nav nav-list">  
               <li class="nav-header">Welcome <%= user %></li>  
-              <li class="active"><a href="#">Upload</a></li>  
+              <li class="active"><a data-toggle="modal" href="#upload">Upload</a>
+             
+<!-- Upload Modal Division  -->
+<div id="upload" class="modal hide fade in" style="display: none; ">  
+<div class="modal-header">  
+<a class="close" data-dismiss="modal">×</a>  
+<h3>Upload to make ur frnds Envy of you!</h3>  
+</div>  
+<div class="modal-body">  
+<form class="form-horizontal" method="post" enctype='multipart/form-data', action='/uploadPic'>
+  <input class="input-large" type="file" name="uploadedPic" />
+  <input  class="btn btn-success" type="submit" value="submit" />
+  <a href="#" class="btn" data-dismiss="modal">Close</a> 
+</form>                
+</div>  
+<div class="modal-footer">  
+ 
+ 
+</div>  
+</div> </li>  
               <li><a href="#">Friends</a></li>  
               <li><a href="#">Groups</a></li>  
               <li><a href="#">Reccomendations</a></li>  
@@ -13,3 +33,21 @@
            </ul>  
           </div><!--/.well -->  
         </div><!--/span-->  
+
+
+        <div class="span9">
+           <% var flash = request.flash('info').pop(); if (flash) { %>
+          <p><%- flash %></p>
+            <% } %>
+
+            <% var flash = request.flash('error').pop(); if (flash) { %>
+          <p><%- flash %></p>
+            <% } %>
+
+        </div>
+
+</div>
+</div>
+
+
+ 

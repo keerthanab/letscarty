@@ -23,48 +23,57 @@ AWS.config.update({region: configKeys.development.AMAZON_REGION});
 
 var s3 = new AWS.S3();
 
-
-
 //############## AMAZON init Code Ends #########################
 
+
+
+
 action('uploadPic', function () {
+
+console.log("file-size:"+req.files.uploadedPic.size);
+
+//creating new Objectid for each of the photo uploaded
+var ObjectId = require('mongoose').Types.ObjectId;
+var photoId = new ObjectId();
+console.log(photoId);
 
 //am reading the file to be uploaded into fs
 var fs = require('fs');
 
 
 //----------- Uploading the file-----------------------------------------------
-fs.readFile('../bumpy/public/images/compound.png', function(err, fileData){
+fs.readFile(req.files.uploadedPic.path, function(err, fileData){
 if(err){
-	console.log('Error in reading file into fs '+err)
+	console.log('Error in reading file into fs '+err);
+  flash('error', 'Error in readng file');
 }else{
      
 s3.client.createBucket({Bucket: 'chiti'}, function(err, bucData) {
 if(err){
 console.log('Err while creating bucket in S3'+err);
+flash('error', 'Error in creating bucket in S3');
 } else{
 
 
-  var data = {Bucket: 'chiti', Key: 'myPic', Body: fileData, ContentType : 'image'};
+  var data = {Bucket: 'chiti', Key: photoId, Body: fileData, ContentType : 'image'};
   s3.client.putObject(data, function(err, data) {
   	
     if (err) {
       console.log("Error uploading data into S3: ", err);
+      flash('error', 'Error while uploading... Pl try again:(');
+
     } else {
       console.log("Successfully uploaded Pic into S3");
+          flash('info', 'Successfully uploaded ur Pic:)');
     }
+
+    redirect('/home');
+
   });
 }
 });
-
 }
-	
 });
-
-
-
-	render('home.ejs', {user: req.user, title: 'Welcome '+req.user+ '!'}  );
-
 
 });
 

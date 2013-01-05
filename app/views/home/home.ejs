@@ -28,6 +28,7 @@
               <li><a href="#">Friends</a></li>  
               <li><a href="#">Groups</a></li>  
               <li><a href="#">Reccomendations</a></li>  
+              <li><a href="/downPic">Download a Pic</a></li> 
                 
               
            </ul>  
@@ -38,12 +39,16 @@
         <div class="span9">
            <% var flash = request.flash('info').pop(); if (flash) { %>
           <p><%- flash %></p>
-            <% } %>
+                    
+                       <% } %>
 
             <% var flash = request.flash('error').pop(); if (flash) { %>
           <p><%- flash %></p>
             <% } %>
 
+            <%  if(picUrl) { %>
+            <img src= <%=picUrl %> />
+               <% } %>
         </div>
 
 </div>

@@ -42,7 +42,7 @@ function ensureAuthenticated(req, res, next) {
     return next();
   }
 
-  res.redirect('/login');
+  res.redirect('/');
 }
 
 // Use the SinglyStrategy within Passport.

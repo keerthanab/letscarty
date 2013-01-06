@@ -9,20 +9,34 @@
 <script src="../twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>  
 <script src="../twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script> 
 
-<style> 
-body{ 
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; 
+<style type="text/css">
+    img.bg {
+    /* Set rules to fill background */
+    min-height: 768px;
+    min-width: 1024px;
+    max-width: 60%;
+    max-height: 100%;
+  
+  /* Set up proportionate scaling */
+  height:auto;
+  top:-2%;
+  left:14%;
+    
+  /* Set up positioning */
+  position: absolute;
+  z-index: 0;
+
+
 }
- </style>
-
-
+body{
+  background-color:#D04040;
+}
+</style>
 
 </head>  
-<body background="/images/letscarty-only-home-image.png">
+
+<body>
+<img src="/images/letscarty-only-home-image.png" class="bg" alt="">  
 
 <!-- We will create navbar here -->   
 <div class="navbar navbar-fixed-top">  

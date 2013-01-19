@@ -23,14 +23,34 @@
 
 module.exports = function (mongoose, compound) {
     // mongoose stuff
-    var schema = mongoose.Schema({ provider: String,
+    var serviceSchema = new mongoose.Schema({
+    _social_link:{
+                    url: {type: String, unique: false, required: false },
+                    handle: {type: String, unique: false, required: false },
+                    email: {type: String, unique: false, required: false },
+                    work: {type: String, unique: false, required: false },
+                    description: {type: String, unique: false, required: false },
+                    thumbnail_url: {type: String, unique: false, required: false },
+                    id: {type: String, unique: false, required: false },
+                    location: {type: String, unique: false, required: false },
+                    entry: {type: String, unique: false, required: false },
+                    name: {type: String, unique: false, required: false }
+                }
+                    
+    }); 
+
+    var Services = mongoose.model('Services', serviceSchema);
+    Services.modelName = 'Services';
+    compound.models.Services = Services;
+
+    var userSchema = mongoose.Schema({ provider: String,
     id: String,
     username: String,
     displayName: String,
     emails: [{value: String}],
     _raw: [mongoose.Schema.Types.Mixed],
     _json: {id: String,
-    		services: [mongoose.Schema.Types.Mixed],
+    		services: [serviceSchema],
     		url: String,
     		description: String,
     		thumbnail_url: String,
@@ -43,7 +63,7 @@ module.exports = function (mongoose, compound) {
     		}
     	});
     
-    var User = mongoose.model('User', schema);
+    var User = mongoose.model('User', userSchema);
 
     // expose model name for view helpers (resource-based helpers like formFor)
     User.modelName = 'User';

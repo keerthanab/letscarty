@@ -1,11 +1,9 @@
 action('landingPage', function () {
 	
-
-	if(req.user){
+	if(req.user) {
 		redirect('/home');
-	}else{
-	render('landing.ejs', {user: req.user, title: 'Let\'s Carty'}  );
-}
-
+	} else {
+		render('landing.ejs', {user: req.user, title: 'Let\'s Carty'}  );
+	}
 
 });

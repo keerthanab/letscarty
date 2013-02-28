@@ -28,13 +28,13 @@ module.exports = function (mongoose, compound) {
                     url: {type: String, unique: false, required: false },
                     handle: {type: String, unique: false, required: false },
                     email: {type: String, unique: false, required: false },
-                    work: {type: String, unique: false, required: false },
-                    description: {type: String, unique: false, required: false },
                     thumbnail_url: {type: String, unique: false, required: false },
-                    id: {type: String, unique: false, required: false },
+                    id: {type: String, unique: true, required: false },
                     location: {type: String, unique: false, required: false },
                     entry: {type: String, unique: false, required: false },
-                    name: {type: String, unique: false, required: false }
+                    name: {type: String, unique: false, required: false },
+                    work: {type: String, unique: false, required: false },
+                    description: {type: String, unique: false, required: false }                           
                 }
                     
     }); 
@@ -50,7 +50,7 @@ module.exports = function (mongoose, compound) {
     emails: [{value: String}],
     _raw: [mongoose.Schema.Types.Mixed],
     _json: {id: String,
-    		services: [serviceSchema],
+    		services: [Services],
     		url: String,
     		description: String,
     		thumbnail_url: String,
